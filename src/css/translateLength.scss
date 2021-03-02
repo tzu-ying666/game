@@ -1,0 +1,4 @@
+/*RWD*/
+@function transLength ($value) {
+    @return $value / 1080 * 100vmin;
+}

@@ -1,18 +1,18 @@
 <template>
   <div class="box0">
-    <img alt="Back ground" src="./assets/background.png">
+    <!-- <img alt="Back ground" src="./assets/background.png"> -->
   </div>
   <div class="box1">
     <ul>
-      <li><a href="http://www.google.com.tw" title="Google" target="_blank">{{ mag }}</a></li>
+      <!-- <li><a href="http://www.google.com.tw" title="Google" target="_blank">{{ mag }}</a></li> -->
+      <li><a href="http://www.google.com.tw" title="Google" target="_blank">{{ greeting }}</a></li>
+
       <!-- <li>123</li> -->
     </ul>
   </div>
   <div class="box2">
-    <img alt="Money" src="./assets/money..png">
   </div>
   <div class="box3">
-    <img alt="Home" src="./assets/home.png">
   </div>
   <div class="box4" @click="test"></div>
   <div v-for="(item, index) in gameList" :key="item + '_' + index" :class="'box' + item ">
@@ -43,21 +43,28 @@
     <div class="b4"></div>
     <div class="b5"></div>
     <div class="b6"></div>
-    <div class="b7"></div>
-    <div class="b8"></div> -->
+    <div class="b7"></div> -->
+    <div class="b8" @click="test1"></div> 
     <div class="b9">ABCDEFG</div>
   </div>
-
-  <list></list>
+  <list v-show="showList"></list>
+  <service v-show="showList1"></service>
+  <notice></notice>
 </template>
 
 <script>
+// import vue from 'vue';
+import vuex from 'vuex';
 import list from './components/list.vue'
+import service from './components/service.vue'
+import notice from './components/notice.vue'
 
 export default {
   name: 'App',
   components: {
-    list
+    list,
+    service,
+    notice,
   },
 
   data() {
@@ -66,31 +73,30 @@ export default {
       gameList: [],
       mag: "跑馬燈!!!!!!!!!!!!!!!!!!!!!!",
       intervalId: null,
+      showList: false,
+      showList1: false,
     }
   },
 
   watch: {},
-  computed: {},
+  computed: {
+    ...vuex.mapState([
+      'greeting'
+    ]),
+  },
   methods: {
     test () {
+      this.showList = !this.showList; //將布林值變成反向
       console.log('123');
     },
-    lang() {
-      if(this.intervalId != null) return; 
-      this.intervalId = setInterval(() => {
-      //得到第一個字元
-      var start = this.mag.substring(0,1)
-      //得到最後一個字元
-      var end = this.mag.substring(1)
-      //後面與前面字元連接
-      this.mag = end + start
-    },400)
-  },
-
+      test1 () {
+      this.showList1 = !this.showList1; //將布林值變成反向
+      console.log('123');
+    },
   },
 
   created() {
-    for (let ii = 3; ii <= 8; ii++) {
+    for (let ii = 3; ii <= 7; ii++) {
       this.arr.push(ii);
     }
     for (let jj =5; jj <= 9; jj++) {
@@ -102,7 +108,9 @@ export default {
 
 </script>
 
-<style>
+<style lang="scss">
+@import './css/translateLength';
+
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -111,22 +119,32 @@ export default {
   color: #2c3e50;
 }
 
+$game-width: transLength(320);
+$game-height: transLength(430);
+$bottom-width: transLength(156);
+$bottom-height: transLength(196);
+
 body {
   margin: 0;
+  width: transLength(1920);
+  height: transLength(1080);
+  overflow: hidden;
 }
 
 .box0 {
   position: absolute;
-  width: 1920px;
-  height: 1080px;
+  width: transLength(1920);
+  height: transLength(1080);
   z-index: -1;
+  background-image: url(./assets/background.png);
 }
 
 .box1 {
   position: absolute;
-  width: 1920px;
-  height: 80px;
-  font-size: 60px;
+  width:  transLength(1920);
+  // height: transLength(80);
+  height:  transLength(80);
+  font-size:  transLength(60);
   background-color: black;
 }
 
@@ -135,7 +153,7 @@ body {
   margin: 0;
 	display: flex;
 	list-style-type: none;
-	animation: mag 15s linear infinite;
+	animation: mag 5s linear infinite;
 	position: absolute;
   z-index: 1;
 }
@@ -161,45 +179,56 @@ body {
 
 .box2 {
   position: absolute;
-  width: 1500px;
-  height: 340px;
-  left: 210px;
+  // width: 1500px;
+  // height: 340px;
+  width: transLength(1500);
+  height: transLength(340);
+  left: transLength(210);
   z-index: 0;
-}
-
-.box3 {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 200px;
-  left: 60px;
-}
-
-.box4 {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  top: 200px;
-  left: 1760px;
-  background-image: url(./assets/list.png);
+  background-image: url(./assets/money..png);
   background-size: contain;
   background-position: center;
 }
 
+.box3 {
+  position: absolute;
+  width:  transLength(100);
+  height:  transLength(100);
+  top:  transLength(120);
+  left:  transLength(50);
+  background-image: url(./assets/home.png);
+  background-size: contain;  
+  // div裡的圖片
+  background-position: center;
+  // 圖片在div裡的位置 
+}
+
+.box4 {
+  position: absolute;
+  width:  transLength(100);
+  height:  transLength(100);
+  top:  transLength(120);
+  left:  transLength(1760);
+  background-image: url(./assets/list.png);
+  background-size: contain;
+  background-position: center;
+  z-index: 2;
+}
+
 .box5 {
   position: absolute;
-  width: 320px;
-  height: 430px;
-  top: 350px;
-  left: 50px;
+  width:  $game-width;
+  height:  $game-height;
+  top:  transLength(270);
+  left:  transLength(50);
   background-image: url(./assets/box.png);
 }
 
 .box5-1 {
-  width: 320px;
-  height: 430px;
-  top: 350px;
-  left: 50px;
+  width:  $game-width;
+  height:  $game-height;
+  top:  transLength(270);
+  left:  transLength(50);
   background-image: url(./assets/game1.png);
   background-size: contain;
   background-position: center;
@@ -207,18 +236,18 @@ body {
 
 .box6 {
   position: absolute;
-  width: 320px;
-  height: 430px;
-  top: 350px;
-  left: 425px;
+  width: $game-width;
+  height: $game-height;
+  top: transLength(270);
+  left: transLength(425);
   background-image: url(./assets/box.png);
 }
 
 .box6-1 {
-  width: 320px;
-  height: 430px;
-  top: 350px;
-  left: 425px;
+  width: $game-width;
+  height: $game-height;
+  top: transLength(270);
+  left: transLength(425);
   background-image: url(./assets/game2.png);
   background-size: contain;
   background-position: center;
@@ -228,18 +257,18 @@ body {
   display: flex;
   align-items: center;
   position: absolute;
-  width: 320px;
-  height: 430px;
-  top: 350px;
-  left: 800px;
+  width: $game-width;
+  height: $game-height;
+  top: transLength(270);
+  left: transLength(800);
   background-image: url(./assets/box.png);
   background-size: contain;
   background-position: center;
 }
 
 .box7-1 {
-  width: 320px;
-  height: 320px;
+  width: $game-width;
+  height: $game-width;
   background-image: url(./assets/benz.png);
   background-size: contain;
   background-position: center;
@@ -249,18 +278,18 @@ body {
   display: flex;
   align-items: center;
   position: absolute;
-  width: 320px;
-  height: 430px;
-  top: 350px;
-  left: 1175px;
+  width: $game-width;
+  height: $game-height;
+  top: transLength(270);
+  left: transLength(1175);
   background-image: url(./assets/box.png);
   background-size: contain;
   background-position: center;
 }
 
 .box8-1 {
-  width: 320px;
-  height: 320px;
+  width: $game-width;
+  height: $game-width;
   background-image: url(./assets/dragon.png);
   background-size: contain;
   background-position: center;
@@ -270,18 +299,18 @@ body {
   display: flex;
   align-items: center;
   position: absolute;
-  width: 320px;
-  height: 430px;
-  top: 350px;
-  left: 1550px;
+  width: $game-width;
+  height: $game-height;
+  top: transLength(270);
+  left: transLength(1550);
   background-image: url(./assets/box.png);
   background-size: contain;
   background-position: center;
 }
 
 .box9-1 {
-  width: 320px;
-  height: 320px;
+  width: $game-width;
+  height: $game-width;
   background-image: url(./assets/ele.png);
   background-size: contain;
   background-position: center;
@@ -290,9 +319,9 @@ body {
 .box10 {
   display: flex;
   position: absolute;
-  width: 1920px;
-  height: 350px;
-  top: 810px;
+  width: transLength(1920);
+  height: transLength(350);
+  top: transLength(730);
   background-image: url(./assets/bottom.png);
   background-size: contain;
   background-position: center;
@@ -300,28 +329,32 @@ body {
 
 .b1 {
   position: absolute;
-  width: 230px;
-  height: 230px;
-  margin-left: 60px;
+  width: transLength(230);
+  height: transLength(230);
+  margin-left: transLength(60);
   background-image: url(./assets/head.png);
   background-color: black;
+  background-size: contain;
+  background-position: center;
 }
 
 .b2 {
   position: absolute;
-  width: 420px;
-  height: 120px;
-  left: 320px;
-  bottom: 80px;
+  width: transLength(420);
+  height: transLength(120);
+  left: $game-width;
+  bottom: transLength(80);
   background-image: url(./assets/coin.png);
+  background-size: contain;
+  background-position: center;
   }
 
   .b3 {
   position: absolute;
-  width: 156px;
-  height: 196px;
-  left: 770px;
-  bottom: 80px;
+  width: $bottom-width;
+  height: $bottom-height;
+  left: transLength(770);
+  bottom: transLength(80);
   background-image: url(./assets/friend.png);
   background-size: contain;
   background-position: center;
@@ -329,10 +362,10 @@ body {
 
   .b4 {
   position: absolute; 
-  width: 156px;
-  height: 196px;
-  left: 956px;
-  bottom: 80px;
+  width: $bottom-width;
+  height: $bottom-height;
+  left: transLength(956);
+  bottom: transLength(80);
   background-image: url(./assets/give.png);
   background-size: contain;
   background-position: center;
@@ -340,10 +373,10 @@ body {
 
   .b5 {
   position: absolute;
-  width: 156px;
-  height: 196px;
-  left: 1142px;
-  bottom: 80px;
+  width: $bottom-width;
+  height: $bottom-height;
+  left: transLength(1142);
+  bottom: transLength(80);
   background-image: url(./assets/deposit.png);
   background-size: contain;
   background-position: center;
@@ -351,10 +384,10 @@ body {
 
   .b6 {
   position: absolute;
-  width: 156px;
-  height: 196px;
-  left: 1328px;
-  bottom: 80px;
+  width: $bottom-width;
+  height: $bottom-height;
+  left: transLength(1328);
+  bottom: transLength(80);
   background-image: url(./assets/record.png);
   background-size: contain;
   background-position: center;
@@ -362,10 +395,10 @@ body {
 
   .b7 {
   position: absolute;
-  width: 156px;
-  height: 196px;
-  left: 1514px;
-  bottom: 80px;
+  width: $bottom-width;
+  height: $bottom-height;
+  left: transLength(1514);
+  bottom: transLength(80);
   background-image: url(./assets/notice.png);
   background-size: contain;
   background-position: center;
@@ -373,10 +406,10 @@ body {
 
   .b8 {
   position: absolute;
-  width: 156px;
-  height: 196px;
-  left: 1700px;
-  bottom: 80px;
+  width: $bottom-width;
+  height: $bottom-height;
+  left: transLength(1700);
+  bottom: transLength(80);
   background-image: url(./assets/service.png);
   background-size: contain;
   background-position: center;
@@ -384,20 +417,20 @@ body {
 
   .b9 {
   position: absolute;
-  width: 230px;
-  height: 60px;
-  left: 60px;
-  bottom: 60px;
+  width: transLength(230);
+  height: transLength(60);
+  left: transLength(60);
+  bottom: transLength(60);
   background-color: black;
-  font-size: 35px;
+  font-size: transLength(35);
   color: #ffffff;
   }
 
   .text {
     position: absolute;
-    left: 130px;
-    top: 50px;
-    font-size: 45px;
+    left: transLength(130);
+    top: transLength(50);
+    font-size: transLength(45);
     color: #ffffff;
   }
 
