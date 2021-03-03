@@ -46,9 +46,9 @@
     <div class="b8" @click="test1"></div> 
     <div class="b9">ABCDEFG</div>
   </div>
-  <list v-show="showList"></list>
-  <service v-show="showService"></service>
-  <notice v-show="showNotice"></notice>
+  <list v-show="showList" ></list>
+  <service v-show="showService" ></service>
+  <notice v-show="showNotice" ></notice>
   <!-- <accontSet v-show="showAccountSet"></accontSet> -->
 </template>
 
@@ -78,7 +78,6 @@ export default {
       showList: false,
       showService: false,
       showNotice: false,
-      // showAccountSet: false,
     }
   },
 
@@ -102,10 +101,7 @@ export default {
       this.showNotice = !this.showNotice; //將布林值變成反向
       console.log('123');
     },
-    //   test3 () {
-    //   this.showAccountSet = !this.showAccountSet; //將布林值變成反向
-    //   console.log('123');
-    // },
+ 
   },
 
   created() {
@@ -368,6 +364,9 @@ body {
   height: $bottom-height;
   left: transLength(770);
   bottom: transLength(80);
+  background: rgba(0, 0, 0, 0.7);
+  background-blend-mode: multiply;
+  border-radius: 50px;
   background-image: url(./assets/friend.png);
   background-size: contain;
   background-position: center;
@@ -379,6 +378,9 @@ body {
   height: $bottom-height;
   left: transLength(956);
   bottom: transLength(80);
+  background: rgba(0, 0, 0, 0.7);
+  background-blend-mode: multiply;
+  border-radius: 50px;
   background-image: url(./assets/give.png);
   background-size: contain;
   background-position: center;
@@ -390,6 +392,9 @@ body {
   height: $bottom-height;
   left: transLength(1142);
   bottom: transLength(80);
+  background: rgba(0, 0, 0, 0.7);
+  background-blend-mode: multiply;
+  border-radius: 50px;
   background-image: url(./assets/deposit.png);
   background-size: contain;
   background-position: center;
@@ -401,6 +406,9 @@ body {
   height: $bottom-height;
   left: transLength(1328);
   bottom: transLength(80);
+  background: rgba(0, 0, 0, 0.7);
+  background-blend-mode: multiply;
+  border-radius: 50px;
   background-image: url(./assets/record.png);
   background-size: contain;
   background-position: center;

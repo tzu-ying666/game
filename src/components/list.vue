@@ -7,13 +7,13 @@
     <div class="setList3"></div>>   
     <div class="setList4"></div>>   
   </div>
-  <accontSet v-show="showAccountSet"></accontSet>
+  <accontSet v-show="showAccountSet" @close="accountButton"></accontSet>
 </template>
 <script>
 // <input type="text" v-bind:value="firstnum" name=item />
 import accontSet from '../components/accontSet.vue'
 export default {
-  name: 'App',
+  
   components: {
     accontSet,
   },
@@ -40,6 +40,7 @@ export default {
   },
 
   },
+
   created() {
     for (let ii = 1; ii <= 4; ii++) {
       this.arr.push(ii);

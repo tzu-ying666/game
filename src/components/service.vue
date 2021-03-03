@@ -14,7 +14,7 @@
       <!-- <div class="messageText line2">歡迎與客服聯繫</div> -->
     </div>
     <div class="open"></div>
-    <div class="x" @click="testx">{{ close }}</div>
+    <div class="x" @click="testx"></div>
   </div>
   
   </template>

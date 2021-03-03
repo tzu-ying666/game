@@ -7,9 +7,9 @@ export default createStore({
     close: false
   },
   mutations: {
-    XButton () {
-      this.close = !this.close;
-    }
+    XButton ( state ) {
+      state.close = !state.close
+      }
   },
   actions: {
   },

@@ -45,7 +45,10 @@ export default {
   },
 
   methods: {
-
+    testx () {
+      this.$emit('close'); //子傳父
+      console.log('123');
+    }
   },
   created() {
 
