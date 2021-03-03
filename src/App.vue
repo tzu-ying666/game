@@ -6,7 +6,6 @@
     <ul>
       <!-- <li><a href="http://www.google.com.tw" title="Google" target="_blank">{{ mag }}</a></li> -->
       <li><a href="http://www.google.com.tw" title="Google" target="_blank">{{ greeting }}</a></li>
-
       <!-- <li>123</li> -->
     </ul>
   </div>
@@ -36,20 +35,21 @@
   <div class="box10">
     <div class="b1"></div>
     <div class="b2">
-      <div class="text">123,456,789</div>>
+      <div class="text">123,456,789</div>
     </div>
-    <div v-for="(item, index) in arr" :key="item + '_' + index" :class="'b' + item "></div>
-    <!-- <div class="b3"></div>
+    <!-- <div v-for="(item, index) in arr" :key="item + '_' + index" :class="'b' + item "></div> -->
+    <div class="b3"></div>
     <div class="b4"></div>
     <div class="b5"></div>
     <div class="b6"></div>
-    <div class="b7"></div> -->
+    <div class="b7" @click="test2"></div>
     <div class="b8" @click="test1"></div> 
     <div class="b9">ABCDEFG</div>
   </div>
   <list v-show="showList"></list>
-  <service v-show="showList1"></service>
-  <notice></notice>
+  <service v-show="showService"></service>
+  <notice v-show="showNotice"></notice>
+  <!-- <accontSet v-show="showAccountSet"></accontSet> -->
 </template>
 
 <script>
@@ -58,6 +58,7 @@ import vuex from 'vuex';
 import list from './components/list.vue'
 import service from './components/service.vue'
 import notice from './components/notice.vue'
+// import accontSet from './components/accontSet.vue'
 
 export default {
   name: 'App',
@@ -65,6 +66,7 @@ export default {
     list,
     service,
     notice,
+    // accontSet,
   },
 
   data() {
@@ -74,14 +76,17 @@ export default {
       mag: "跑馬燈!!!!!!!!!!!!!!!!!!!!!!",
       intervalId: null,
       showList: false,
-      showList1: false,
+      showService: false,
+      showNotice: false,
+      // showAccountSet: false,
     }
   },
 
   watch: {},
   computed: {
     ...vuex.mapState([
-      'greeting'
+      'greeting',
+      'close'
     ]),
   },
   methods: {
@@ -90,9 +95,17 @@ export default {
       console.log('123');
     },
       test1 () {
-      this.showList1 = !this.showList1; //將布林值變成反向
+      this.showService = !this.showService; //將布林值變成反向
       console.log('123');
     },
+      test2 () {
+      this.showNotice = !this.showNotice; //將布林值變成反向
+      console.log('123');
+    },
+    //   test3 () {
+    //   this.showAccountSet = !this.showAccountSet; //將布林值變成反向
+    //   console.log('123');
+    // },
   },
 
   created() {
@@ -333,7 +346,7 @@ body {
   height: transLength(230);
   margin-left: transLength(60);
   background-image: url(./assets/head.png);
-  background-color: black;
+  background-color: #000032;
   background-size: contain;
   background-position: center;
 }

@@ -1,16 +1,27 @@
 <template>
   <div class="set">
     <img alt="Back ground" src="../assets/set.png">
-    <div v-for="(item, index) in arr" :key="item + '_' + index" :class="'setList' + item "></div>   
+    <!-- <div v-for="(item, index) in arr" :key="item + '_' + index" :class="'setList' + item "></div> -->
+    <div class="setList1"></div>>   
+    <div class="setList2" @click="accountButton"></div>>   
+    <div class="setList3"></div>>   
+    <div class="setList4"></div>>   
   </div>
+  <accontSet v-show="showAccountSet"></accontSet>
 </template>
 <script>
-    // <input type="text" v-bind:value="firstnum" name=item />
-
+// <input type="text" v-bind:value="firstnum" name=item />
+import accontSet from '../components/accontSet.vue'
 export default {
+  name: 'App',
+  components: {
+    accontSet,
+  },
+
   data () {
     return {
       arr: [],
+      showAccountSet: false,
     }
   },
 
@@ -23,6 +34,10 @@ export default {
   },
 
   methods: {
+    accountButton () {
+    this.showAccountSet = !this.showAccountSet; //將布林值變成反向
+    console.log('123');
+  },
 
   },
   created() {
@@ -34,49 +49,51 @@ export default {
 }
 
 </script>
-<style>
+<style lang="scss">
+@import '../css/translateLength';
+
   .set {
     display: flex;
     position: absolute;
-    width: 400px;
-    height: 650px;
-    left: 1520px;
-    top: 100px;
+    width: transLength(400);
+    height: transLength(650);
+    left: transLength(1520);
+    top: transLength(100);
   }
 
   .setList1 {
-    width: 100px;
-    height: 100px;
+    width: transLength(100);
+    height: transLength(100);
     position: absolute;
-    left: 240px;
-    top: 20px;
+    left: transLength(240);
+    top: transLength(20);
     background-image: url(../assets/list.png);
   }
 
   .setList2 {
-    width: 350px;
-    height: 100px;
+    width: transLength(350);
+    height: transLength(100);
     position: absolute;
-    left: 25px;
-    top: 180px;
+    left: transLength(25);
+    top: transLength(180);
     background-image: url(../assets/account.png);
   }
 
   .setList3 {
-    width: 350px;
-    height: 100px;
+    width: transLength(350);
+    height: transLength(100);
     position: absolute;
-    left: 25px;
-    top: 340px;
+    left: transLength(25);
+    top: transLength(340);
     background-image: url(../assets/voice.png);
   }
 
   .setList4 {
-    width: 350px;
-    height: 100px;
+    width: transLength(350);
+    height: transLength(100);
     position: absolute;
-    left: 25px;
-    top: 500px;
+    left: transLength(25);
+    top: transLength(500);
     background-image: url(../assets/signout.png);
   }
 
