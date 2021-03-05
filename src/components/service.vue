@@ -64,6 +64,7 @@
   /* background-image: url(../assets/top-service.png); */
   background-size: contain;
   background-position: center;
+  cursor: pointer;
 
   &.click {
     background-image: url(../assets/top-service.png);
@@ -198,5 +199,6 @@
   background-image: url(../assets/x.png);
   background-size: contain;
   background-position: center;
+  cursor: pointer;
 }
 </style>

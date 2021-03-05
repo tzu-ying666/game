@@ -14,7 +14,6 @@
       <div class="topText1">更換照片</div>
     </div> -->
     <div class="box"></div>
-      <!-- <div v-show="currentClickItem === 'accountSet'"> -->
         <div v-show="currentClickItem === 'accountSet'">
         <div class="accountBox"></div>
           <div class="accountHead"></div>
@@ -142,6 +141,7 @@ export default {
   // background-image: url(../assets/duckBox.png);
   background-size: contain;
   background-position: center;
+  cursor: pointer;
 
   &.click {
     background-image: url(../assets/top-service.png);
@@ -168,6 +168,7 @@ export default {
   background-image: url(../assets/duckBox.png);
   background-size: contain;
   background-position: center;
+  cursor: pointer;
 
   &.click {
     background-image: url(../assets/top-service.png);
@@ -310,6 +311,7 @@ export default {
   background-image: url(../assets/cancel.png);
   background-size: contain;
   background-position: center;
+  cursor: pointer;
 }
 
 .save {
@@ -322,6 +324,7 @@ export default {
   background-image: url(../assets/save.png);
   background-size: contain;
   background-position: center;
+  cursor: pointer;
 }
 
 .passText1 {

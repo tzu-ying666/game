@@ -49,6 +49,7 @@ export default {
     background-image: url(../assets/noticeMessage.png);
     background-size: contain;
     background-position: center;
+    z-index: 2;
   }
 
   .messageEnter {
@@ -60,6 +61,7 @@ export default {
     background-image: url(../assets/enter.png);
     background-size: contain;
     background-position: center;
+    z-index: 3;
   }
 
   .noticeText {

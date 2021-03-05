@@ -232,28 +232,28 @@ body {
   background-position: center;
 }
 
+@for $k from 3 through 4{
+  .box#{$k}{
+    position: absolute;
+    width:  transLength(100);
+    height:  transLength(100);
+    top:  transLength(120);
+    background-size: contain;
+    // div裡的圖片
+    background-position: center;
+    // 圖片在div裡的位置 
+  }
+}
+
 .box3 {
-  position: absolute;
-  width:  transLength(100);
-  height:  transLength(100);
-  top:  transLength(120);
   left:  transLength(50);
   background-image: url(./assets/home.png);
-  background-size: contain;  
-  // div裡的圖片
-  background-position: center;
-  // 圖片在div裡的位置 
 }
 
 .box4 {
-  position: absolute;
-  width:  transLength(100);
-  height:  transLength(100);
-  top:  transLength(120);
   left:  transLength(1760);
   background-image: url(./assets/list.png);
-  background-size: contain;
-  background-position: center;
+  cursor: pointer;
   z-index: 2;
 }
 
@@ -414,11 +414,13 @@ body {
   .b7 {
   left: transLength(1514);
   background-image: url(./assets/notice.png);
+  cursor: pointer;
   }
 
   .b8 {
   left: transLength(1700);
   background-image: url(./assets/service.png);
+  cursor: pointer;
   }
 
   .b9 {

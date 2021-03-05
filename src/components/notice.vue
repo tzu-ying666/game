@@ -12,9 +12,16 @@
       <div class="formText3">內文</div>
     </div>
     <div class="blackBox">
-      <div class="formText4">1</div>
-      <div class="formText5">新年快樂</div>
-      <div class="formText6" @click="serviceAction">祝預秀網路員工新年快樂</div>
+      <div v-for="(item, index) in formArr" :key="item + '_' + index" :class="'noticeLineText' + (index)" >
+        <div class="formText4">{{ item.num }}</div>
+        <div class="formText5">{{ item.title }}</div>
+        <div class="formText6" @click="serviceAction">{{item.text}}</div>
+      </div>
+      <!-- <div >
+        <div class="formText4">1</div>
+        <div class="formText5">新年快樂</div>
+        <div class="formText6" @click="serviceAction">祝預秀網路員工新年快樂</div>
+      </div> -->
     </div>
     <!-- <div class="enter" @click="testx"></div> -->
     <div class="gray"></div>
@@ -39,8 +46,25 @@ components: {
 
 data () {
   return {
-    arr: [],
     showMessage: false,
+    arr: [],
+    formArr: [
+      {
+        num: 1,
+        title: '新年快樂',
+        text: '祝預秀網路員工新年快樂',
+      },
+      {
+        num: 2,
+        title: '元宵快樂',
+        text: '祝預秀網路員工元宵快樂',
+      },
+      // {
+      //   num: 3,
+      //   title: '端午快樂',
+      //   text: '祝預秀網路員工端午快樂',
+      // },
+    ],
   }
 },
 
@@ -115,6 +139,7 @@ created() {
   background-image: url(../assets/enter.png);
   background-size: contain;
   background-position: center;
+  cursor: pointer;
 }
 
 .blackBox {
@@ -125,6 +150,17 @@ created() {
   top: transLength(350);
   left: transLength(270);
   background-color: #646464;
+}
+
+@for $i from 0 through 10{
+  .noticeLineText#{$i}{
+    display: flex;
+    position: absolute;
+    width: transLength(1350);
+    height: transLength(80);
+    top: $i * 110px;
+    z-index: 1;
+  }
 }
 
 .gray {
@@ -266,7 +302,8 @@ created() {
   font-size: transLength(40);
   color: #ffff00;
   align-items: center;
-  justify-content: center; 
+  justify-content: center;
+  cursor: pointer; 
 }
 
 </style>

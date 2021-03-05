@@ -112,6 +112,7 @@ $set-height: transLength(100);
 .setList2 {
   top: transLength(180);
   background-image: url(../assets/account.png);
+  cursor: pointer;
 }
 
 .setList3 {
